@@ -57,6 +57,7 @@ class DownstreamExpert(nn.Module):
         self.test_dataset = RandomDataset(**self.datarc)
 
         self.connector = nn.Linear(upstream_dim, self.modelrc['input_dim'])
+        print('upstream_dim:', upstream_dim, 'input_dim:', self.modelrc['input_dim'])
         self.model = Model(
             output_class_num=self.train_dataset.class_num,
             **self.modelrc
@@ -154,7 +155,9 @@ class DownstreamExpert(nn.Module):
                 the loss to be optimized, should not be detached
                 a single scalar in torch.FloatTensor
         """
+        print('features[0]:', features[0].shape)
         features = pad_sequence(features, batch_first=True)
+        print('features:', features.shape)
         features = self.connector(features)
         predicted = self.model(features)
 

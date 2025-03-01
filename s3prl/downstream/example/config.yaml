@@ -1,5 +1,5 @@
 runner:
-  total_steps: 20000
+  total_steps: 4
   gradient_clipping: 1
   gradient_accumulate_steps: 2
 
